@@ -1,0 +1,28 @@
+.flex_set{
+    display: flex;
+    justify-content: space-between;
+    background-color: purple;
+    height: 50px;
+    /* padding: 11px; */
+}
+.img_div{
+    padding: 10px;
+    height: 35px;
+    display: flex;
+    gap: 15px;
+    font-size: x-large;
+    font-weight: 600;
+    color: aliceblue;
+    /* background-color: #ff7f7f; */
+}
+.logo_img{
+    height: 35px;
+}
+
+.modal_page{
+    
+}
+
+.tab_div{
+    
+}
