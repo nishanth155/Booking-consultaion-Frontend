@@ -13,8 +13,8 @@ export default function Home({baseUrl}){
                     boxShadow: "2px solid black",
                     height: 150,
                     width: 300,
-                    margin: "auto",
-                    padding: "2%",
+                    // margin: "auto",
+                    // padding: "2%",
                     color: "black",
         },
       };
@@ -26,8 +26,8 @@ export default function Home({baseUrl}){
         <>
             <Header checkLogin={login} checkLogout={logout}/>
             <Box className="box_tab" style={{customStyles}}>
-                <Card >
-                    <Tabs value={tabValue} onChange={handleTab}>
+                <Card style={{justifyItems:'center'}}>
+                    <Tabs value={tabValue} onChange={handleTab} >
                         <Tab label="DOCTORS"  className="tab_label"/>
                         <Tab label="APPOINMENTS" className="tab_label"/>
                     </Tabs>

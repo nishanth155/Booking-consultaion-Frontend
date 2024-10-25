@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import axios from "axios";
+import AuthContext from "../common/AuthProvider";
 
 let baseUrl="http://localhost:8080/";
+
 export const useGetAllData =(probs)=>{
     
     const[getAllSpeciality,setgetAllSpeciality]=useState([]);
@@ -22,22 +24,32 @@ export const useGetAllData =(probs)=>{
     };
 };
 
-// export const PostLogin=(user, pass)=>{
+// export const PostLogin=({user, pass})=>{
 
-//     const[datas, setDatas]=useState([]);
-//     // var datas=[];
-//     console.log("postlogin",datas)
+//     const { setAuth }=useContext(AuthContext);
+
+//     const[success, setSuccess]=useState(0);
+//     const[error, setError]=useState(0);
     
 //     axios.post(baseUrl+"auth/login",{},{
 //         auth: {
 //             username: user,
 //             password: pass
 //       }
-//     }).then((response)=>{const res= response;
-//         setDatas(res)
+//     }).then((response)=>{
+//         console.log("postlogin",response)
+//         const name=response?.data?.firstName;
+//         const statusCode=response?.status;
+//         const email=response?.data?.emailAddress;
+//         setSuccess(statusCode);
+//         const token= response?.data?.accessToken;
+//         setAuth({name, email, statusCode, token})
+//     }).catch((err)=>{
+//         setError(err?.status);
 //     });
 //     return{
-//         datas
+//         success,
+//         error
 //     }
 // }
 

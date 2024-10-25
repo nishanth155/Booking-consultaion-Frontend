@@ -1,6 +1,6 @@
 import React ,{ useContext, useState } from "react"
 import AuthContext from "../../common/AuthProvider"
-import { Box, Button, FormControl, TextField, Typography } from "@material-ui/core";
+import { Box, Button, FormControl, FormHelperText, TextField, Typography } from "@material-ui/core";
 import { Rating } from "@material-ui/lab";
 import axios from "axios";
 
@@ -44,6 +44,7 @@ export default function RateAppointment({rate}){
         <>
         <header style={{textAlign:'center', backgroundColor:'purple', fontSize:'25px'}}>Rate an Appointment</header><br></br>
             <div>
+                {success!==200 ?
                 <Box>
                     <FormControl>
                         <TextField
@@ -57,12 +58,11 @@ export default function RateAppointment({rate}){
                     </FormControl><br></br><br></br>
                     <FormControl>
                         <Typography>Rating: <Rating name="rating" value={rateFill} size="small" onChange={(event,newValue)=>{setRateFill(newValue);}} /></Typography>
+                        {ratingError && <FormHelperText style={{color:'red'}}>Select a Rating</FormHelperText>}
                     </FormControl><br></br><br></br>
-                    {ratingError && <Typography color="error">Select a Rating</Typography>}
                     <Button type="submit" variant="contained" color="primary" onClick={handleSubmitRating}>RATE APPOINTMENT</Button>
                     <br></br><br></br>
-                    {success===200 && <Typography variant="body1" color="initial">Thank you for your rating</Typography>}
-                </Box>
+                </Box> : <Typography variant="h5" color="initial" align="center">Thank you for your rating</Typography>}
             </div>
         </>
     )

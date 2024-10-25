@@ -3,7 +3,7 @@ import '../header/Header.css';
 import { useContext, useState } from 'react';
 import Logo from '../../assets/logo.jpeg';
 import Modal from 'react-modal';
-import { Card, Tab, Tabs } from '@material-ui/core';
+import {Tab, Tabs } from '@material-ui/core';
 import Login from '../../screens/login/Login';
 import Register from '../../screens/register/Register';
 import AuthContext from '../AuthProvider';
@@ -52,8 +52,7 @@ export default function Header({checkLogin, checkLogout}){
                 </div>
             </header>
             <Modal isOpen={checkLogin} onRequestClose={closeModal} style={customStyles} id='modal_page'>
-                <Card>
-                    <Tabs value={tabValue} onChange={handleTab} >
+                    <Tabs value={tabValue} onChange={handleTab} style={{marginBottom:'3%'}} >
                         <Tab label="LOGIN" />
                         <Tab label="REGISTER" />
                     </Tabs>
@@ -61,7 +60,6 @@ export default function Header({checkLogin, checkLogout}){
                         {tabValue===0 && <Login />}
                         {tabValue===1 && <Register />}
                     </div>
-                </Card>
             </Modal>
         </>
   );

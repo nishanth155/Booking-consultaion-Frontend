@@ -11,14 +11,14 @@ export default function DoctorList(){
 
     const customStyles = {
         content: {
-          position: "absolute",
-                    border: "2px solid #000",
-                    boxShadow: "2px solid black",
-                    height: 450,
-                    width: 350,
-                    margin: "auto",
-                    padding: "2%",
-                    color: "black",
+            position: "absolute",
+            // border: "2px solid #000",
+            // boxShadow: "2px solid black",
+            height: 450,
+            width: 350,
+            margin: "auto",
+            // padding: "2%",
+            color: "black",
         },
       };
 
@@ -52,7 +52,7 @@ export default function DoctorList(){
     
     return(
     <>
-    <div style={{ textAlign: 'center', width: '600px', marginLeft: '450px'}}>
+    <div >
         <Box>
             <FormControl style={{width: '500px'}}>
                 <InputLabel variant="standard" htmlFor="uncontrolled-native">Select Speciality</InputLabel>
@@ -65,27 +65,23 @@ export default function DoctorList(){
         <br></br>
     {getAllSpeciality.map((list, index)=>(
         <Box key={index} style={{textAlign: 'start'}}>
-            <Typography variant="h6">Doctor Name: {list.firstName}</Typography>
-            <br></br>
-            <Typography variant="body1">Speciality: {list.speciality}</Typography>
-            <Typography variant="body1">Rating: <Rating defaultValue={list.rating}readOnly size="small"/></Typography>
-            <Card key={index}>
+            <Card key={index} style={{paddingLeft:'2%'}}>
+                <Typography variant="h6">Doctor Name: {list.firstName}</Typography>
+                <br></br>
+                <Typography variant="body1">Speciality: {list.speciality}</Typography>
+                <Typography variant="body1">Rating: <Rating defaultValue={list.rating}readOnly size="small"/></Typography>
                 <Button type="button" variant="contained" color="primary" size="small" onClick={()=>{handleBookAppointment(list)}}>BookAppointment</Button>
                 <Button type="button" variant="contained" color="secondary" size="small" onClick={()=>{handleViewDetail(list)}}>View Details</Button>
+                <br></br><br></br>
             </Card>
-            <br></br><br></br>
             <Modal isOpen={isModal} onRequestClose={()=>setIsModal(!isModal)} style={customStyles} key={index}>
                 <Card>
-                    <div>
                         <BookAppointment booking={bookAppointment} />
-                    </div>
                 </Card>
             </Modal>
             <Modal isOpen={isView} onRequestClose={()=>setIsView(!isView)} style={customStyles} key={index}>
                 <Card>
-                    <div>
                         <DoctorDetails key={index} detailDoc={listDetail}/>
-                    </div>
                 </Card>
             </Modal>
             <Divider />

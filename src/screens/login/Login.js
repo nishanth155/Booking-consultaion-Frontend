@@ -3,12 +3,13 @@ import { Button } from "@material-ui/core";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import AuthContext from "../../common/AuthProvider";
+import { PostLogin } from "../../util/fetch";
 export default function Login(){
 
     const{ setAuth }=useContext(AuthContext);
 
-    const[username, setUsername]=useState('');
-    const[password, setPassword]=useState('');
+    const[username, setUsername]=useState('test10@gmail.com');
+    const[password, setPassword]=useState('12345678');
     const[emailError, setEmailError]=useState('');
     const[passError, setPassError]=useState('');
     const[isSuccess,setIsSuccess]=useState(false);
@@ -44,8 +45,13 @@ export default function Login(){
         }).catch((err)=>{
             setErrorCode(err?.status);
         });
-    }
 
+        // const{success, error} = PostLogin(username,password)
+        // setStatus(success);
+        // setErrorCode(error);
+    }
+    // if(isSuccess)
+    //     alert("Login Successful!!!")
     useEffect(()=>{
         if(status===200)
             setIsSuccess(true)

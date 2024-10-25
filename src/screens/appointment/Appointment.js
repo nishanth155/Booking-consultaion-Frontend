@@ -1,4 +1,4 @@
-import { Box, Button, Card, Divider, Typography } from "@material-ui/core";
+import { Box, Button, Paper, Typography } from "@material-ui/core";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import AuthContext from "../../common/AuthProvider";
@@ -9,13 +9,13 @@ export default function Appointment(){
 
     const customStyles = {
         content: {
-          position: "absolute",
-                    border: "2px solid #000",
+        //   position: "absolute",
+                    // border: "2px solid #000",
                     boxShadow: "2px solid black",
                     height: 350,
-                    width: 300,
+                    width: 500,
                     margin: "auto",
-                    // padding: "2%",
+                    // padding: "11px",
                     color: "black",
         },
       };
@@ -49,27 +49,25 @@ export default function Appointment(){
         <>
             {auth.statusCode===200 ? 
             <div>
-                {loading && <div><Typography variant="h6">Loading... Checking your appointment</Typography></div> }
-            {!loading && getAllSpeciality.map((keys,index)=>(
-                <Box key={index} style={{textAlign:'start'}}>
+            {loading && <div style={{ padding:'17%'}}><Typography variant="h4">Loading... Checking your appointment</Typography></div>}
+            {!loading && getAllSpeciality.length===0 ? <div style={{ padding:'17%'}}><Typography variant="h4">Your appointment has not been booked</Typography></div>
+            : getAllSpeciality.map((keys,index)=>(
+                <Box key={index} style={{textAlign:'start', marginLeft:'1%', marginRight:'1%'}}>
+                    <Paper key={index} style={{paddingLeft:'2%', paddingBottom:'1%'}}>
                     <Typography>Dr.{keys.doctorName}</Typography>
                     <Typography>Date: {keys.appointmentDate}</Typography>
                     <Typography>symptoms: {keys.symptoms}</Typography>
                     <Typography>priorMedicalHistory: {keys.priorMedicalHistory}</Typography>
-                    <Card key={index}>
-                        <Button type="submit" variant="contained" color="primary" size="small" onClick={()=>{handleRatingSubmit(keys)}}>RATE APPOINTMENT</Button>
-                    </Card><br></br>
+                    <Button type="submit" variant="contained" color="primary" size="small" onClick={()=>{handleRatingSubmit(keys)}}>RATE APPOINTMENT</Button>
+                    </Paper>
+                    <br></br>
                     <Modal isOpen={isModal} onRequestClose={()=>setIsModal(!isModal)} style={customStyles} key={index}>
-                        <Card>
-                            <div>
-                                <RateAppointment rate={rateAppointment} />
-                            </div>
-                        </Card>
+                        <RateAppointment rate={rateAppointment} />
                     </Modal>
-                    <Divider /><br></br><br></br>
+                    
                 </Box>
             ))}
-            </div>: <div><Typography variant="h5">Login to see appointment</Typography></div>}
+            </div>: <div style={{padding:'2%'}}><Typography variant="h5">Login to see appointment</Typography></div>}
         </>
     )
 }
