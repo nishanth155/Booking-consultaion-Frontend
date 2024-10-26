@@ -7,6 +7,8 @@ import Modal from 'react-modal';
 
 export default function Appointment(){
 
+    
+
     const customStyles = {
         content: {
         //   position: "absolute",
@@ -23,6 +25,7 @@ export default function Appointment(){
     const{auth}=useContext(AuthContext);
 
     const endpoint="users/"+auth.email+"/appointments";
+    const url="http://localhost:8080/"+endpoint;
     const headers={ 'Authorization': 'Bearer '+auth.token };
 
     const[getAllSpeciality, setGetAllSpeciality]=useState([]);
@@ -30,15 +33,28 @@ export default function Appointment(){
     const[rateAppointment, setRateAppointment]=useState([]);
     const[loading, setLoading]=useState(true);
 
-    useEffect(()=>{
-        const time =setTimeout(()=>{axios.get("http://localhost:8080/"+endpoint, {headers})
+    // useEffect(()=>{
+    //     const time =setTimeout(()=>{axios.get(url, {headers})
+    //     .then((response)=> {
+    //         setGetAllSpeciality(response.data);
+    //         setLoading(false);
+    //     })},2000);
+    //     return()=>clearTimeout(time);
+
+    // },[url,headers]);
+
+    
+
+    function getAppointment(url, headers){
+        axios.get(url,{headers})
         .then((response)=> {
             setGetAllSpeciality(response.data);
             setLoading(false);
-        })},3000);
-        return()=>clearTimeout(time);
+        })
+    }
 
-    },[endpoint,headers]);
+    if(loading)
+        getAppointment(url, headers);
 
     const handleRatingSubmit=(rate)=>{
         setIsModal(!isModal);

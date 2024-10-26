@@ -8,14 +8,14 @@ import { useState } from "react";
 export default function Home({baseUrl}){
     const customStyles = {
         content: {
-          position: "absolute",
-                    border: "2px solid #000",
-                    boxShadow: "2px solid black",
-                    height: 150,
-                    width: 300,
-                    // margin: "auto",
-                    // padding: "2%",
-                    color: "black",
+            position: "absolute",
+            border: "2px solid #000",
+            boxShadow: "2px solid black",
+            height: 150,
+            width: 300,
+            // margin: "auto",
+            // padding: "2%",
+            color: "black",
         },
       };
 
@@ -31,11 +31,11 @@ export default function Home({baseUrl}){
                         <Tab label="DOCTORS"  className="tab_label"/>
                         <Tab label="APPOINMENTS" className="tab_label"/>
                     </Tabs>
+                </Card><br></br>
                     <div id='tab_div'>
-                        {tabValue===0 && <DoctorList />}
-                        {tabValue===1 && <Appointment />}
+                        {tabValue===0 && <DoctorList baseUrl={baseUrl}/>}
+                        {tabValue===1 && <Appointment baseUrl={baseUrl}/>}
                     </div>
-                </Card>
             </Box>
         </>
     );

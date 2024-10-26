@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
-import { Box, Button, FormControl, Input, InputLabel, MenuItem, Select, Typography } from "@material-ui/core";
+import { Box, Button, FormControl, Input, InputLabel, MenuItem, Paper, Select, Typography } from "@material-ui/core";
 import AuthContext from "../../common/AuthProvider";
 import axios from "axios";
  
-export default function BookAppointment({booking}){
+export default function BookAppointment({booking,baseurl}){
 
     const timeSlot=["12AM-1AM","1AM-2AM","2AM-3AM","3AM-4AM","4AM-5AM","5AM-6AM","6AM-7AM","7AM-8AM","8AM-9AM","9AM-10AM","10AM-11AM",
         "11AM-12PM","12PM-1PM","1PM-2PM","2PM-3PM","3PM-4PM","4PM-5PM","5PM-6PM","6PM-7PM","7PM-8PM","8PM-9PM","9PM-10PM","10PM-11PM",
@@ -64,8 +64,8 @@ export default function BookAppointment({booking}){
         <>
             {auth.statusCode===200 ?
             <div>
-                <header style={{textAlign:'center', backgroundColor:'purple', fontSize:'25px'}}>Book Appointment</header><br></br><br></br>
-                <Box>
+                <header style={{textAlign:'center', backgroundColor:'purple', fontSize:'25px', color:'white'}}>Book Appointment</header><br></br><br></br>
+                <Paper>
                     <FormControl>
                         <Input id="docName" type="text" name="doctorName" value={"Dr."+booking.firstName+" "+booking.lastName} disabled/>
                     </FormControl>
@@ -114,9 +114,9 @@ export default function BookAppointment({booking}){
                         <InputLabel htmlFor="symptoms">Symptoms</InputLabel>
                         <Input id="symptoms" type="text" name="symptoms" value={fillPost.symptoms} onChange={handleValue} />
                     </FormControl><br></br><br></br>
-                    <Button type="submit" color="primary" variant="contained" onClick={handleSubmit}>BOOK APPOINTMENT</Button><br></br>
+                    {status!==200 && <><Button type="submit" color="primary" variant="contained" onClick={handleSubmit} style={{ margin: '10px' }}>BOOK APPOINTMENT</Button><br></br></>}
                     {status===200 && <Typography variant="h6" color="primary">The appointment is booked!!!</Typography>}
-                </Box>
+                </Paper>
             </div> : <div><Typography variant="h5">Login to see Booking Appointment</Typography></div>}
         </>
     )

@@ -42,9 +42,8 @@ export default function RateAppointment({rate}){
 
     return(
         <>
-        <header style={{textAlign:'center', backgroundColor:'purple', fontSize:'25px'}}>Rate an Appointment</header><br></br>
+        <header style={{textAlign:'center', backgroundColor:'purple', fontSize:'25px', color:'white'}}>Rate an Appointment</header><br></br>
             <div>
-                {success!==200 ?
                 <Box>
                     <FormControl>
                         <TextField
@@ -57,12 +56,12 @@ export default function RateAppointment({rate}){
                         />
                     </FormControl><br></br><br></br>
                     <FormControl>
-                        <Typography>Rating: <Rating name="rating" value={rateFill} size="small" onChange={(event,newValue)=>{setRateFill(newValue);}} /></Typography>
+                        <Typography>Rating: <Rating name="rating" value={rateFill} size="small" onChange={(event,newValue)=>{setRateFill(newValue)}} /></Typography>
                         {ratingError && <FormHelperText style={{color:'red'}}>Select a Rating</FormHelperText>}
                     </FormControl><br></br><br></br>
-                    <Button type="submit" variant="contained" color="primary" onClick={handleSubmitRating}>RATE APPOINTMENT</Button>
-                    <br></br><br></br>
-                </Box> : <Typography variant="h5" color="initial" align="center">Thank you for your rating</Typography>}
+                    {success!==200 ? <><Button type="submit" variant="contained" color="primary" onClick={handleSubmitRating}>RATE APPOINTMENT</Button></>:
+                    <Typography variant="h5" color="initial" align="center">Thank you for your rating</Typography>}
+                </Box>
             </div>
         </>
     )

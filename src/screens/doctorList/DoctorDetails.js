@@ -5,7 +5,7 @@ export default function DoctorDetails({detailDoc}){
 
     return(
         <>
-        <header style={{textAlign:'center', backgroundColor:'purple', fontSize:'25px'}}>Doctor Detail</header>
+        <header style={{textAlign:'center', backgroundColor:'purple', fontSize:'25px', color:'white'}}>Doctor Detail</header>
             <Box>
                 <Typography variant="h6">Dr.{detailDoc.firstName} {detailDoc.lastName}</Typography>
                 <Typography>Total Experience:{detailDoc.totalYearsOfExp} years</Typography>
