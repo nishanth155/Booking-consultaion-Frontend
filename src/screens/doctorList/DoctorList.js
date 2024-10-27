@@ -1,4 +1,4 @@
-import { Divider, FormControl, Typography, InputLabel, Select, MenuItem, Box, Button, Card } from "@material-ui/core";
+import { FormControl, Typography, InputLabel, Select, MenuItem, Box, Button, Card } from "@material-ui/core";
 import Modal from 'react-modal';
 import {Rating } from "@material-ui/lab"
 import { useState } from "react";
@@ -82,11 +82,9 @@ export default function DoctorList({baseUrl}){
                 <br></br>
             </Card>
             <Modal isOpen={isModal} onRequestClose={()=>setIsModal(!isModal)} style={booking} key={index} shouldCloseOnEsc>
-                <Card>
-                        <BookAppointment booking={bookAppointment} baseUrl={baseUrl} />
-                </Card>
+                <BookAppointment booking={bookAppointment} baseUrl={baseUrl} />
             </Modal>
-            <Modal isOpen={isView} onRequestClose={()=>setIsView(!isView)} style={detail} key={index} shouldCloseOnOverlayClick>
+            <Modal isOpen={isView} onRequestClose={()=>setIsView(!isView)} style={detail} key={index} shouldCloseOnEsc>
                 <Card>
                         <DoctorDetails key={index} detailDoc={listDetail}/>
                 </Card>

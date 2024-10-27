@@ -1,18 +1,17 @@
 import { Box, FormControl, FormHelperText, Input, InputLabel, Typography} from "@material-ui/core";
 import { Button } from "@material-ui/core";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
 import AuthContext from "../../common/AuthProvider";
 export default function Login(){
 
     const{ setAuth }=useContext(AuthContext);
 
-    const[username, setUsername]=useState('');
-    const[password, setPassword]=useState('');
+    const[username, setUsername]=useState('test13@gmail.com');
+    const[password, setPassword]=useState('12345678');
     const[emailError, setEmailError]=useState('');
     const[passError, setPassError]=useState('');
     const[isSuccess,setIsSuccess]=useState(false);
-    const[status, setStatus]=useState(0);
     const[errorCode, setErrorCode]=useState(0);
 
     const handleSubmit=(e)=>{
@@ -38,24 +37,19 @@ export default function Login(){
             const name=response?.data?.firstName;
             const statusCode=response?.status;
             const email=response?.data?.emailAddress;
-            setStatus(statusCode);
+            if(statusCode===200){
+                setIsSuccess(!isSuccess);
+            }
             const token= response?.data?.accessToken;
             setAuth({name, email, statusCode, token})
         }).catch((err)=>{
             setErrorCode(err?.status);
         });
-
-        // const{success, error} = PostLogin(username,password)
-        // setStatus(success);
-        // setErrorCode(error);
     }
-    // if(isSuccess)
-    //     alert("Login Successful!!!")
-    useEffect(()=>{
-        if(status===200)
-            setIsSuccess(true)
-    },[status]
-    )
+        // if(isSuccess)
+        // {
+        //     alert("Login Successful!!!")
+        // }
 
     return(
         <>
@@ -71,8 +65,7 @@ export default function Login(){
                         <Input id="password" type="password" value={password} onChange={e=>setPassword(e.target.value)}/>
                         {passError && <FormHelperText style={{color:'red'}}>{passError}</FormHelperText>}
                     </FormControl><br></br><br></br>
-                    <Button type="submit" variant="contained" color="primary" onClick={handleSubmit}>LOGIN</Button><br></br>
-                    {isSuccess && <Typography variant='body1' color="primary">Login Successful!!!</Typography>}
+                    <Button type="submit" variant="contained" color="primary" onClick={handleSubmit}>LOGIN</Button><br></br><br></br>
                     {!emailError && !passError && errorCode===401 && <Typography variant='body1' color="error">Your account is not Registered</Typography>}
                     {errorCode===500 && <Typography variant='body1' color="error">Something went wrong!!!</Typography>}
                 </Box>

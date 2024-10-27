@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Box, Button, FormControl, Input, InputLabel, MenuItem, Paper, Select, Typography } from "@material-ui/core";
+import {Button, FormControl, Input, InputLabel, MenuItem, Paper, Select, Typography } from "@material-ui/core";
 import AuthContext from "../../common/AuthProvider";
 import axios from "axios";
  
@@ -11,14 +11,14 @@ export default function BookAppointment({booking,baseurl}){
 
     const{auth}=useContext(AuthContext);
 
-    const endpoint="/appointments";
+    const endpoint="appointments";
     const headers={ 'Authorization': 'Bearer '+auth.token};
 
     const[booked, setBooked] = useState(0);
     const[status, setStatus] = useState(0);
 
     const[fillPost, setFillPost]=useState({
-        appointmentDate:'2024-10-01',
+        appointmentDate:new Date(),
         timeSlot: '',
         priorMedicalHistory: '',
         symptoms: ''
@@ -46,15 +46,12 @@ export default function BookAppointment({booking,baseurl}){
             symptoms: fillPost.symptoms,
             priorMedicalHistory: fillPost.priorMedicalHistory
         };
-        console.log(bookingPost)
 
-        axios.post('http://localhost:8080'+endpoint,bookingPost,{headers})
+        axios.post(endpoint,bookingPost,{headers})
         .then((response)=>{
-            const code=response?.status;
-            setStatus(code);
+            setStatus(response?.status);
         }).catch((err)=>{
-            const ecode=err?.status;
-            setBooked(ecode);
+            setBooked(err?.status);
         });
     };
     if(booked===400)

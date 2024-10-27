@@ -53,4 +53,25 @@ export const useGetAllData =(probs)=>{
 //     }
 // }
 
+// export const PostUrl=(endpoint, payload)=>{
+//     const{auth}=useContext(AuthContext);
+//     const headers={ 'Authorization': 'Bearer '+auth.token};
+//     const[status, setStatus]=useState(0);
+//     const[error, setError]=useState(0);
+
+//     axios.post(baseUrl+endpoint,{payload},{headers})
+//     .then((response)=>{
+//         // const code=response?.status;
+//         setStatus(response?.status);
+//     }).catch((err)=>{
+//         // const ecode=err?.status;
+//         setError(err?.status);
+//     });
+
+//     return{
+//         status,
+//         error,
+//     };
+// }
+
 export default useGetAllData;

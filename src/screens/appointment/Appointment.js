@@ -1,5 +1,5 @@
 import { Box, Button, Paper, Typography } from "@material-ui/core";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
 import AuthContext from "../../common/AuthProvider";
 import RateAppointment from "./RateAppointment";
