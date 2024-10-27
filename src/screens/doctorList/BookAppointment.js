@@ -47,7 +47,7 @@ export default function BookAppointment({booking,baseurl}){
             priorMedicalHistory: fillPost.priorMedicalHistory
         };
 
-        axios.post(endpoint,bookingPost,{headers})
+        axios.post("http://localhost:8080/"+endpoint,bookingPost,{headers})
         .then((response)=>{
             setStatus(response?.status);
         }).catch((err)=>{

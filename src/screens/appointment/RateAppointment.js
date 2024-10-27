@@ -27,7 +27,7 @@ export default function RateAppointment({rate}){
 
     if(rateFill===0)
     {
-        setRatingError(!ratingError);
+        setRatingError(true);
     }
     else
     {
@@ -56,7 +56,7 @@ export default function RateAppointment({rate}){
                         />
                     </FormControl><br></br><br></br>
                     <FormControl>
-                        <Typography>Rating: <Rating name="rating" value={rateFill} size="small" onChange={(event,newValue)=>{setRateFill(newValue)}} /></Typography>
+                        <Typography>Rating: <Rating name="rating" value={rateFill} size="small" onChange={(event)=>{setRateFill(event.target.value)}} /></Typography>
                         {ratingError && <FormHelperText style={{color:'red'}}>Select a Rating</FormHelperText>}
                     </FormControl><br></br><br></br>
                     {success!==200 ? <><Button type="submit" variant="contained" color="primary" onClick={handleSubmitRating}>RATE APPOINTMENT</Button></>:

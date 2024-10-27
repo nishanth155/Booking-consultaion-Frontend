@@ -11,14 +11,11 @@ export default function Appointment(){
 
     const customStyles = {
         content: {
-        //   position: "absolute",
-                    // border: "2px solid #000",
-                    boxShadow: "2px solid black",
-                    height: 350,
-                    width: 500,
-                    margin: "auto",
-                    // padding: "11px",
-                    color: "black",
+        boxShadow: "2px solid black",
+        height: 350,
+        width: 500,
+        margin: "auto",
+        color: "black",
         },
       };
 
@@ -31,19 +28,7 @@ export default function Appointment(){
     const[getAllSpeciality, setGetAllSpeciality]=useState([]);
     const[isModal, setIsModal]=useState(false);
     const[rateAppointment, setRateAppointment]=useState([]);
-    const[loading, setLoading]=useState(true);
-
-    // useEffect(()=>{
-    //     const time =setTimeout(()=>{axios.get(url, {headers})
-    //     .then((response)=> {
-    //         setGetAllSpeciality(response.data);
-    //         setLoading(false);
-    //     })},2000);
-    //     return()=>clearTimeout(time);
-
-    // },[url,headers]);
-
-    
+    const[loading, setLoading]=useState(true);    
 
     function getAppointment(url, headers){
         axios.get(url,{headers})
