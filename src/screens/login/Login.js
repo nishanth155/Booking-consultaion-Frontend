@@ -7,8 +7,8 @@ export default function Login(){
 
     const{ setAuth }=useContext(AuthContext);
 
-    const[username, setUsername]=useState('test13@gmail.com');
-    const[password, setPassword]=useState('12345678');
+    const[username, setUsername]=useState('');
+    const[password, setPassword]=useState('');
     const[emailError, setEmailError]=useState('');
     const[passError, setPassError]=useState('');
     const[isSuccess,setIsSuccess]=useState(false);

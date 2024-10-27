@@ -1,6 +1,5 @@
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import axios from "axios";
-import AuthContext from "../common/AuthProvider";
 
 let baseUrl="http://localhost:8080/";
 
