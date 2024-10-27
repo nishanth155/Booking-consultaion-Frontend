@@ -18,7 +18,7 @@ export default function BookAppointment({booking,baseurl}){
     const[status, setStatus] = useState(0);
 
     const[fillPost, setFillPost]=useState({
-        appointmentDate:new Date(),
+        appointmentDate:'2024-11-01',
         timeSlot: '',
         priorMedicalHistory: '',
         symptoms: ''
